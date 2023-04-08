@@ -1,7 +1,7 @@
 import { Chart } from "react-google-charts";
 
 export const DrawChart = (props: any) => {
-  console.log(`The props data is: ${JSON.stringify(props.Data)}`);
+  console.log(`The props data is: ${JSON.stringify(props.result)}`);
   // let data: any = [
   //   { size: 500, timeTaken: 10.100000023841858 },
   //   { size: 1000, timeTaken: 1.5999999642372131 },
@@ -11,7 +11,12 @@ export const DrawChart = (props: any) => {
   // ];
   const chartData = [
     ["No.of elements", "TimeTaken"],
-    ...props.result.map((item: any) => [parseInt(item.Size), item.Time]),
+    ...props.result.map((item: any) => [
+      item.sortedData.map((data: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        [data.Size, data.Time];
+      }),
+    ]),
   ];
 
   console.log(`The chart Data is ${chartData}`);

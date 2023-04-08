@@ -11,6 +11,7 @@ export function Home(props: any) {
     { value: "insertion", text: "Insertion Sort" },
     { value: "merge", text: "Merge Sort" },
     { value: "quick", text: "Quick Sort" },
+    { value: "sortAll", text: "Sort all Algorithms" },
   ];
 
   const [selected, setSelected] = useState(options[0].text);
@@ -23,13 +24,20 @@ export function Home(props: any) {
     event.preventDefault();
     if (selected === "bubble") {
       const sorteDdata: any = bubbleSort();
-
-      props.onSubmission(sorteDdata);
+      props.onSubmission([{ Algorithm: "bubble", sortedData: sorteDdata }]);
       //   console.log(sorteDdata);
     } else if (selected === "selection") {
       const sorteDdata: any = selectionSort();
-      props.onSubmission(sorteDdata);
+      props.onSubmission([{ Algorithm: "selected", sortedData: sorteDdata }]);
+    } else if (selected === "sortAll") {
+      let RESULT: any = [];
+      const bubbleSortData: any = bubbleSort();
+      RESULT.push({ Algorithm: "bubble", sortedData: bubbleSortData });
+      const selectionSortData: any = selectionSort();
+      RESULT.push({ Algorithm: "selection", sortedData: selectionSortData });
+      props.onSubmission(RESULT);
     }
+
     setSelected(options[0].text);
   }
   return (
