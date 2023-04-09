@@ -1,8 +1,7 @@
 import dataSet from "../Dataset/dataSet";
-
 var now = require("performance-now");
 
-export function bubbleSort() {
+function insertionSort() {
   let performanceData: any = [];
   console.log(`the dataset  in bubble is.... ${JSON.stringify(dataSet)}`);
   let localdataSet = dataSet;
@@ -14,15 +13,18 @@ export function bubbleSort() {
     let j: number;
     let startTime = now();
     for (i = 0; i < size; i++) {
-      for (j = 1; j < size - i; j++) {
+      for (j = i + 1; j > 0; j--) {
         if (randomList[j] < randomList[j - 1]) {
           let temp: number = randomList[j - 1];
           randomList[j - 1] = randomList[j];
           randomList[j] = temp;
+        } else {
+          break;
         }
       }
     }
     let endTime = now();
+    console.log(`The sorted data is: ${randomList}`);
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
   });
@@ -30,4 +32,6 @@ export function bubbleSort() {
   return performanceData;
 }
 
-export default bubbleSort;
+insertionSort();
+
+export default insertionSort;

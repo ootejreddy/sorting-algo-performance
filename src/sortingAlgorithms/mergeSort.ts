@@ -1,4 +1,4 @@
-import generateRandomData from "./generateRandomData";
+import dataSet from "../Dataset/dataSet";
 var now = require("performance-now");
 
 function merge(left: number[], right: number[]): number[] {
@@ -28,9 +28,9 @@ function sort(randomList: number[]): number[] {
 
 export function mergeSort(): void {
   let performanceData: any = [];
-  let k: number;
-  for (k = 1; k <= 5; k++) {
-    let randomList: number[] = generateRandomData(k);
+  console.log(`The dataSet in merge is:${JSON.stringify(dataSet)}`);
+  dataSet.forEach((element: { unsortedData: number[]; size: number }) => {
+    let randomList: number[] = [...element.unsortedData];
     let size: number = randomList.length;
     let startTime = now();
     let result: number[] = sort(randomList);
@@ -38,9 +38,7 @@ export function mergeSort(): void {
     // console.log(`The merge sorted array is: ${result}`);
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
-  }
+  });
   console.log(`The performance data is ${JSON.stringify(performanceData)}`);
   return performanceData;
 }
-
-mergeSort();

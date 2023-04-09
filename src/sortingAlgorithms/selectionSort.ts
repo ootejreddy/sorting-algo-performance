@@ -1,13 +1,14 @@
-import { log } from "console";
-import generateRandomData from "./generateRandomData";
+import dataSet from "../Dataset/dataSet";
+
 var now = require("performance-now");
 
 export function selectionSort() {
+  console.log(`the dataset  in selection is.... ${JSON.stringify(dataSet)}`);
   let performanceData: any = [];
-  let k: number;
-  for (k = 1; k <= 5; k++) {
-    let randomList: number[] = generateRandomData(k);
-    let size = randomList.length;
+  dataSet.forEach((element: { unsortedData: number[]; size: number }) => {
+    let randomList: number[] = [...element.unsortedData];
+
+    let size: number = element.size;
     let startTime = now();
     for (let i: number = 0; i < randomList.length; i++) {
       let last: number = randomList.length - i - 1;
@@ -17,7 +18,7 @@ export function selectionSort() {
     let endTime = now();
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
-  }
+  });
   console.log(
     `The selection sort performance is ${JSON.stringify(performanceData)}`
   );
