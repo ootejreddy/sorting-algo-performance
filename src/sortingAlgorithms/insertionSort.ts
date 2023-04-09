@@ -32,6 +32,4 @@ function insertionSort() {
   return performanceData;
 }
 
-insertionSort();
-
 export default insertionSort;
