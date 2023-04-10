@@ -2,6 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import generateRandomData from "./sortingAlgorithms/generateRandomData";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// export const dataSet: any = generateRandomData();
+// console.log(`the data set is.... ${JSON.stringify(dataSet)}`);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

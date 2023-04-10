@@ -46,8 +46,13 @@ export function DrawChart3(props: any) {
     ],
   };
   return (
-    <div className="App" style={{ width: "800px", height: "800px" }}>
-      <Line data={data}>Hello</Line>
+    <div
+      className="d-flex align-items-center justify-content-center h-100"
+      style={{ padding: "50px" }}
+    >
+      <div className="App" style={{ width: "800px", height: "800px" }}>
+        <Line data={data}>Hello</Line>
+      </div>
     </div>
   );
 }

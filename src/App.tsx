@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import generateRandomData from "./sortingAlgorithms/generateRandomData";
 import { Home } from "./pages/Home";
-import DrawChart from "./Chart/DrawChart";
 import { DrawChart3 } from "./Chart/DrawChart3";
 
 function App() {

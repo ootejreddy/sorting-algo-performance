@@ -1,7 +1,9 @@
-import { log } from "console";
 import { useState } from "react";
 import bubbleSort from "../sortingAlgorithms/bubbleSort";
 import selectionSort from "../sortingAlgorithms/selectionSort";
+import { mergeSort } from "../sortingAlgorithms/mergeSort";
+import insertionSort from "../sortingAlgorithms/insertionSort";
+import { Button, Card, Container, Form } from "react-bootstrap";
 
 export function Home(props: any) {
   const options = [
@@ -22,6 +24,8 @@ export function Home(props: any) {
 
   function onSubmitHandler(event: any) {
     event.preventDefault();
+    console.log(`The selected is ${selected}`);
+
     if (selected === "bubble") {
       const sorteDdata: any = bubbleSort();
       props.onSubmission([{ Algorithm: "bubble", sortedData: sorteDdata }]);
@@ -29,32 +33,66 @@ export function Home(props: any) {
     } else if (selected === "selection") {
       const sorteDdata: any = selectionSort();
       props.onSubmission([{ Algorithm: "selected", sortedData: sorteDdata }]);
+    } else if (selected === "merge") {
+      const sorteDdata: any = mergeSort();
+      props.onSubmission([{ Algorithm: "merge", sortedData: sorteDdata }]);
+    } else if (selected === "insertion") {
+      const sorteDdata: any = insertionSort();
+      props.onSubmission([{ Algorithm: "insertion", sortedData: sorteDdata }]);
     } else if (selected === "sortAll") {
       let RESULT: any = [];
       const bubbleSortData: any = bubbleSort();
-      RESULT.push({ Algorithm: "bubble", sortedData: bubbleSortData });
+      RESULT.push({ Algorithm: "bubbleSort", sortedData: bubbleSortData });
       const selectionSortData: any = selectionSort();
-      RESULT.push({ Algorithm: "selection", sortedData: selectionSortData });
+      RESULT.push({
+        Algorithm: "selectionSort",
+        sortedData: selectionSortData,
+      });
+      const mergeSortData: any = mergeSort();
+      RESULT.push({ Algorithm: "mergeSort", sortedData: mergeSortData });
+
+      const insertionSortData: any = insertionSort();
+      RESULT.push({
+        Algorithm: "insertionSort",
+        sortedData: insertionSortData,
+      });
       props.onSubmission(RESULT);
     }
 
     setSelected(options[0].text);
   }
   return (
-    <div>
-      <form action="" onSubmit={onSubmitHandler}>
-        <label htmlFor="">
-          select an algorithm:
-          <select name="" id="" value={selected} onChange={handleChange}>
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button type="submit"> sort </button>
-      </form>
+    <div className="d-flex align-items-center justify-content-center h-100">
+      <Card style={{ padding: "20px" }}>
+        {/* <Card.Title className="d-flex justify-content-between">
+        Sorting Algorithms performance
+      </Card.Title> */}
+        {/* <Card.Body
+        style={{ width: "30rem" }}
+        className="d-flex flex-column justify-content-between"
+      > */}
+        <Form action="" onSubmit={onSubmitHandler}>
+          <Form.Group>
+            <Form.Label>Select an Algorithm</Form.Label>
+            <Form.Control as="select" value={selected} onChange={handleChange}>
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.text}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+          <div
+            className="d-flex align-items-center justify-content-center h-100"
+            style={{ padding: "20px" }}
+          >
+            <Button variant="primary" type="submit" style={{ width: "8rem" }}>
+              Sort
+            </Button>
+          </div>
+        </Form>
+        {/* </Card.Body> */}
+      </Card>
     </div>
   );
 }
