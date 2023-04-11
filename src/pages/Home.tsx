@@ -3,7 +3,7 @@ import bubbleSort from "../sortingAlgorithms/bubbleSort";
 import selectionSort from "../sortingAlgorithms/selectionSort";
 import { mergeSort } from "../sortingAlgorithms/mergeSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Card, Container, Form, Nav, Navbar } from "react-bootstrap";
 import quickSort from "../sortingAlgorithms/quickSort";
 
 export function Home(props: any) {
@@ -71,37 +71,44 @@ export function Home(props: any) {
     setSelected(options[0].text);
   }
   return (
-    <div className="d-flex align-items-center justify-content-center h-100">
-      <Card style={{ padding: "20px" }}>
-        {/* <Card.Title className="d-flex justify-content-between">
-        Sorting Algorithms performance
-      </Card.Title> */}
-        {/* <Card.Body
-        style={{ width: "30rem" }}
-        className="d-flex flex-column justify-content-between"
-      > */}
-        <Form action="" onSubmit={onSubmitHandler}>
-          <Form.Group>
-            <Form.Label>Select an Algorithm</Form.Label>
-            <Form.Control as="select" value={selected} onChange={handleChange}>
-              {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.text}
-                </option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-          <div
-            className="d-flex align-items-center justify-content-center h-100"
-            style={{ padding: "20px" }}
-          >
-            <Button variant="primary" type="submit" style={{ width: "8rem" }}>
-              Sort
-            </Button>
-          </div>
-        </Form>
-        {/* </Card.Body> */}
-      </Card>
-    </div>
+    <>
+      <Navbar expand="lg" variant="light" bg="light">
+        <Container style={{ textAlign: "center" }}>
+          <Navbar.Brand href="#">
+            Sorting Algorthims performance chart
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br></br>
+      <div className="d-flex align-items-center justify-content-center h-100">
+        <Card style={{ padding: "30px", backgroundColor: "#E0FFFF" }}>
+          <Form action="" onSubmit={onSubmitHandler}>
+            <Form.Group>
+              <Form.Label>Select an Algorithm</Form.Label>
+              <Form.Control
+                as="select"
+                value={selected}
+                onChange={handleChange}
+              >
+                {options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <div
+              className="d-flex align-items-center justify-content-center h-100"
+              style={{ padding: "20px" }}
+            >
+              <Button variant="primary" type="submit" style={{ width: "8rem" }}>
+                Sort
+              </Button>
+            </div>
+          </Form>
+          {/* </Card.Body> */}
+        </Card>
+      </div>
+    </>
   );
 }
