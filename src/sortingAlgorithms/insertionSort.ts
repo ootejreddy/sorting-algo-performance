@@ -1,4 +1,4 @@
-import dataSet from "../Dataset/dataSet";
+import { dataSet } from "..";
 var now = require("performance-now");
 
 function insertionSort() {
