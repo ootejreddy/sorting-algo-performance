@@ -4,6 +4,7 @@ import selectionSort from "../sortingAlgorithms/selectionSort";
 import { mergeSort } from "../sortingAlgorithms/mergeSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
 import { Button, Card, Container, Form } from "react-bootstrap";
+import quickSort from "../sortingAlgorithms/quickSort";
 
 export function Home(props: any) {
   const options = [
@@ -39,6 +40,9 @@ export function Home(props: any) {
     } else if (selected === "insertion") {
       const sorteDdata: any = insertionSort();
       props.onSubmission([{ Algorithm: "insertion", sortedData: sorteDdata }]);
+    } else if (selected === "quick") {
+      const sorteDdata: any = quickSort();
+      props.onSubmission([{ Algorithm: "insertion", sortedData: sorteDdata }]);
     } else if (selected === "sortAll") {
       let RESULT: any = [];
       const bubbleSortData: any = bubbleSort();
@@ -55,6 +59,11 @@ export function Home(props: any) {
       RESULT.push({
         Algorithm: "insertionSort",
         sortedData: insertionSortData,
+      });
+      const quickSortData: any = quickSort();
+      RESULT.push({
+        Algorithm: "quickSort",
+        sortedData: quickSortData,
       });
       props.onSubmission(RESULT);
     }
