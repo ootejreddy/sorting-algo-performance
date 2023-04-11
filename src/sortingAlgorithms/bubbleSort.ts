@@ -1,32 +1,27 @@
-import dataSet from "../Dataset/dataSet";
-
 var now = require("performance-now");
 
-export function bubbleSort() {
+export function bubbleSort(data: number[]) {
   let performanceData: any = [];
-  console.log(`the dataset  in bubble is.... ${JSON.stringify(dataSet)}`);
-  let localdataSet = dataSet;
-  localdataSet.forEach((element: { unsortedData: number[]; size: number }) => {
-    const randomList: number[] = [...element.unsortedData];
+  console.log(`the dataset  in bubble is.... ${data}`);
 
-    let size: number = element.size;
-    let i: number;
-    let j: number;
-    let startTime = now();
-    for (i = 0; i < size; i++) {
-      for (j = 1; j < size - i; j++) {
-        if (randomList[j] < randomList[j - 1]) {
-          let temp: number = randomList[j - 1];
-          randomList[j - 1] = randomList[j];
-          randomList[j] = temp;
-        }
+  const randomList: number[] = [...data];
+
+  let size: number = randomList.length;
+  let i: number;
+  let j: number;
+  let startTime = now();
+  for (i = 0; i < size; i++) {
+    for (j = 1; j < size - i; j++) {
+      if (randomList[j] < randomList[j - 1]) {
+        let temp: number = randomList[j - 1];
+        randomList[j - 1] = randomList[j];
+        randomList[j] = temp;
       }
     }
-    let endTime = now();
-    let timeTaken = endTime - startTime;
-    performanceData.push({ Size: size, Time: timeTaken });
-  });
-
+  }
+  let endTime = now();
+  let timeTaken = endTime - startTime;
+  performanceData.push({ Size: size, Time: timeTaken });
   return performanceData;
 }
 
