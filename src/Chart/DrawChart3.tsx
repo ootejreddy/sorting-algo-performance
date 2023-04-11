@@ -45,13 +45,51 @@ export function DrawChart3(props: any) {
       }),
     ],
   };
+
+  const options = {
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: "No of Elements",
+          color: "#911",
+          font: {
+            family: "Comic Sans MS",
+            size: 20,
+            weight: "bold",
+            lineHeight: 1.2,
+          },
+          padding: { top: 20, left: 0, right: 0, bottom: 0 },
+        },
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: "Time in MilliSeconds",
+          color: "#191",
+          // font: {
+          //   family: "Times",
+          //   size: 20,
+          //   style: "normal",
+          //   lineHeight: 1.2,
+          // },
+          // padding: { top: 30, left: 0, right: 0, bottom: 0 },
+        },
+      },
+    },
+  };
+
   return (
     <div
       className="d-flex align-items-center justify-content-center h-100"
       style={{ padding: "50px" }}
     >
-      <div className="App" style={{ width: "800px", height: "800px" }}>
-        <Line data={data}>Hello</Line>
+      <div className="App" style={{ width: "1000px", height: "800px" }}>
+        <Line data={data} options={options}>
+          Hello
+        </Line>
       </div>
     </div>
   );
