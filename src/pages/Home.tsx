@@ -3,8 +3,10 @@ import bubbleSort from "../sortingAlgorithms/bubbleSort";
 import selectionSort from "../sortingAlgorithms/selectionSort";
 import { mergeSort } from "../sortingAlgorithms/mergeSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
-import { Button, Card, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { Button, Card, Container, Form, Navbar } from "react-bootstrap";
 import quickSort from "../sortingAlgorithms/quickSort";
+import quickSortThreeMedians from "../sortingAlgorithms/quickSortThreeMedians";
+import heapSort from "../sortingAlgorithms/heapSort";
 
 export function Home(props: any) {
   const options = [
@@ -14,6 +16,8 @@ export function Home(props: any) {
     { value: "insertion", text: "Insertion Sort" },
     { value: "merge", text: "Merge Sort" },
     { value: "quick", text: "Quick Sort" },
+    { value: "quickSortThreeMedians", text: "Quick Sort using three medians" },
+    { value: "heap", text: "Heap Sort" },
     { value: "sortAll", text: "Sort all Algorithms" },
   ];
 
@@ -42,7 +46,17 @@ export function Home(props: any) {
       props.onSubmission([{ Algorithm: "insertion", sortedData: sorteDdata }]);
     } else if (selected === "quick") {
       const sorteDdata: any = quickSort();
-      props.onSubmission([{ Algorithm: "insertion", sortedData: sorteDdata }]);
+      props.onSubmission([{ Algorithm: "quickSort", sortedData: sorteDdata }]);
+    } else if (selected === "quickSortThreeMedians") {
+      const sorteDdata: any = quickSortThreeMedians();
+      props.onSubmission([
+        { Algorithm: "quickSortThreeMedians", sortedData: sorteDdata },
+      ]);
+    } else if (selected === "heap") {
+      const sorteDdata: any = heapSort();
+      props.onSubmission([
+        { Algorithm: "quickSortThreeMedians", sortedData: sorteDdata },
+      ]);
     } else if (selected === "sortAll") {
       let RESULT: any = [];
       const bubbleSortData: any = bubbleSort();
@@ -64,6 +78,16 @@ export function Home(props: any) {
       RESULT.push({
         Algorithm: "quickSort",
         sortedData: quickSortData,
+      });
+      const quickSortThreeMedianData: any = quickSortThreeMedians();
+      RESULT.push({
+        Algorithm: "quickSortThreeMedian",
+        sortedData: quickSortThreeMedianData,
+      });
+      const heapSortData: any = quickSortThreeMedians();
+      RESULT.push({
+        Algorithm: "heapSort",
+        sortedData: heapSortData,
       });
       props.onSubmission(RESULT);
     }

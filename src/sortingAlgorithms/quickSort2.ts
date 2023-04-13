@@ -32,7 +32,7 @@ function sort(randomList: number[], low: number, high: number) {
 }
 
 export function quickSort() {
-  let randomList: number[] = [9, 8, 7, 6, 5, 4, 3, 2];
+  let randomList: number[] = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2];
   sort(randomList, 0, randomList.length - 1);
   console.log(`The random list is: ${randomList}`);
   return;

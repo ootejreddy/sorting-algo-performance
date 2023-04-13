@@ -6,7 +6,7 @@ interface Result {
 export function generateRandomData() {
   let dataSet: any = [];
   for (let i: number = 1; i <= 5; i++) {
-    const ARRAY_LENGTH = 100;
+    const ARRAY_LENGTH = 500;
     let data: number[] = Array.from(Array(ARRAY_LENGTH * i)).map((x) =>
       Math.floor(Math.random() * 1000)
     );

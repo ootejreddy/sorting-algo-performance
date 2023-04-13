@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import { dataSet } from "..";
 
 var now = require("performance-now");
@@ -8,10 +9,35 @@ function swap(randomList: number[], index1: number, index2: number) {
   randomList[index2] = temp;
 }
 
+function getPivot(randomList: number[], low: number, high: number) {
+  let firstElement: number = low;
+  let lastElement: number = high;
+  let middleElement: number = Math.floor((low + high) / 2);
+  // eslint-disable-next-line no-mixed-operators
+  if (
+    (firstElement > middleElement && firstElement < lastElement) ||
+    (firstElement > lastElement && firstElement < middleElement)
+  ) {
+    return firstElement;
+  } else if (
+    (middleElement > firstElement && middleElement < lastElement) ||
+    (middleElement > lastElement && middleElement < firstElement)
+  ) {
+    return middleElement;
+  } else {
+    return lastElement;
+  }
+}
+
 function getPartitionIndex(randomList: number[], low: number, high: number) {
-  const pivot = randomList[low];
   let start: number = low;
   let end: number = high;
+  const pivotIndex = getPivot(randomList, low, end);
+  // console.log(`The pivot Index is ${pivotIndex}`);
+
+  swap(randomList, low, pivotIndex);
+  const pivot = randomList[low];
+  // console.log(`The pivot is ${pivot}`);
   while (start < end) {
     while (randomList[start] <= pivot && start <= high - 1) {
       start++;
@@ -35,9 +61,11 @@ function sort(randomList: number[], low: number, high: number) {
   }
 }
 
-export function quickSort() {
+export function quickSortThreeMedians() {
   let performanceData: any = [];
-  console.log(`the dataset  in quickSort is.... ${JSON.stringify(dataSet)}`);
+  console.log(
+    `the dataset  in quickSortThreeMedian is.... ${JSON.stringify(dataSet)}`
+  );
   let localdataSet = dataSet;
   localdataSet.forEach((element: { unsortedData: number[]; size: number }) => {
     const randomList: number[] = [...element.unsortedData];
@@ -49,8 +77,7 @@ export function quickSort() {
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
   });
-
   return performanceData;
 }
 
-export default quickSort;
+export default quickSortThreeMedians;

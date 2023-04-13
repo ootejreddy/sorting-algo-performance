@@ -25,6 +25,7 @@ export function bubbleSort() {
     let endTime = now();
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
+    console.log(`The sorted data from bubble sort is ${randomList}`);
   });
 
   return performanceData;
