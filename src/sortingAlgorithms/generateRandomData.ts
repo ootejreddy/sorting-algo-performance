@@ -6,9 +6,9 @@ interface Result {
 export function generateRandomData() {
   let dataSet: any = [];
   for (let i: number = 1; i <= 5; i++) {
-    const ARRAY_LENGTH = 500;
+    const ARRAY_LENGTH = 5;
     let data: number[] = Array.from(Array(ARRAY_LENGTH * i)).map((x) =>
-      Math.floor(Math.random() * 1000)
+      Math.floor(Math.random() * 5000)
     );
     const result: Result = { unsortedData: data, size: ARRAY_LENGTH * i };
     dataSet.push(result);

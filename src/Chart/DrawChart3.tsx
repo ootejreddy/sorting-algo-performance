@@ -29,7 +29,7 @@ function getRandomColor(): string {
 }
 
 export function DrawChart3(props: any) {
-  const labels = ["500", "1000", "1500", "2000", "2500"];
+  const labels = ["5", "10", "15", "20", "25"];
   const data = {
     labels: labels,
     datasets: [

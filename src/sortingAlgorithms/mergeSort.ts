@@ -38,6 +38,7 @@ export function mergeSort(): void {
     // console.log(`The merge sorted array is: ${result}`);
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
+    console.log(`The sorted list of merge sort is: ${randomList}`);
   });
   console.log(`The performance data is ${JSON.stringify(performanceData)}`);
   return performanceData;

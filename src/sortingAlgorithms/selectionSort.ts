@@ -18,10 +18,12 @@ export function selectionSort() {
     let endTime = now();
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
+    console.log(`The sorted list of selection sort is ${randomList}`);
   });
   console.log(
     `The selection sort performance is ${JSON.stringify(performanceData)}`
   );
+
   return performanceData;
 }
 

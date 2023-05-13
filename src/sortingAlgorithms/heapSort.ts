@@ -47,7 +47,7 @@ export function heapSort() {
     let size: number = element.size;
     let startTime = now();
     sort(randomList);
-    console.log(`The sorted list is: ${randomList}`);
+    console.log(`The sorted list of heap sort is: ${randomList}`);
     let endTime = now();
     let timeTaken = endTime - startTime;
     performanceData.push({ Size: size, Time: timeTaken });
