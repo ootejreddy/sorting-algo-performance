@@ -3,10 +3,20 @@ import bubbleSort from "../sortingAlgorithms/bubbleSort";
 import selectionSort from "../sortingAlgorithms/selectionSort";
 import { mergeSort } from "../sortingAlgorithms/mergeSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
-import { Button, Card, Container, Form, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Container,
+  Form,
+  Navbar,
+  Row,
+  Col,
+  Nav,
+} from "react-bootstrap";
 import quickSort from "../sortingAlgorithms/quickSort";
 import quickSortThreeMedians from "../sortingAlgorithms/quickSortThreeMedians";
 import heapSort from "../sortingAlgorithms/heapSort";
+import SideNav from "./SideNav";
 
 export function Home(props: any) {
   const options = [
@@ -22,6 +32,7 @@ export function Home(props: any) {
   ];
 
   const [selected, setSelected] = useState(options[0].text);
+  const [inputSize, setInputSize] = useState(0);
 
   const handleChange = (event: any) => {
     setSelected(event.target.value);
@@ -94,6 +105,10 @@ export function Home(props: any) {
 
     setSelected(options[0].text);
   }
+  function handleInputSizeChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputSize(parseInt(event.target.value));
+  }
+
   return (
     <>
       <Navbar expand="lg" variant="light" bg="light">
@@ -104,8 +119,83 @@ export function Home(props: any) {
         </Container>
       </Navbar>
       <br></br>
+
+      <SideNav></SideNav>
+      <Navbar bg="light" expand="lg" style={{ width: "20rem" }}>
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Form onSubmit={onSubmitHandler} style={{ padding: "20px" }}>
+                <Row>
+                  <Col>
+                    <Form.Select
+                      value={selected}
+                      onChange={handleChange}
+                      style={{ marginBottom: "20px" }}
+                    >
+                      {options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.text}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Control
+                      type="number"
+                      placeholder="Input size"
+                      value={inputSize}
+                      onChange={handleInputSizeChange}
+                      style={{ marginBottom: "20px" }}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      style={{ width: "8rem" }}
+                    >
+                      Sort
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* <Container fluid>
+        <Row>
+          <Col className="p-3">
+            <Form style={{ width: "8rem" }}>
+              <Form.Group controlId="algorithmType">
+                <Form.Label>Select Algorithm Type</Form.Label>
+                <Form.Control as="select">
+                  <option>Bubble Sort</option>ß<option>Selection Sort</option>
+                  <option>Insertion Sort</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="rangeBar">
+                <Form.Label>Range</Form.Label>
+                <Form.Control type="range" />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container> */}
+
       <div className="d-flex align-items-center justify-content-center h-100">
-        <Card style={{ padding: "30px", backgroundColor: "#E0FFFF" }}>
+        {/* <Card style={{ padding: "30px", backgroundColor: "#E0FFFF" }}>
           <Form action="" onSubmit={onSubmitHandler}>
             <Form.Group>
               <Form.Label>Select an Algorithm</Form.Label>
@@ -130,8 +220,8 @@ export function Home(props: any) {
               </Button>
             </div>
           </Form>
-          {/* </Card.Body> */}
-        </Card>
+           </Card.Body> 
+        </Card> */}
       </div>
     </>
   );
